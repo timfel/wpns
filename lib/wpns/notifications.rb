@@ -47,15 +47,15 @@ module Wpns
       case type
       when :toast
         msg_body << "<wp:Text1>#{params[:title]}</wp:Text1>" +
-          "<wp:Text2>#{params[:message]}</wp:Text2>" +
-          "<wp:Param>#{params[:param]}</wp:Param>"
+          "<wp:Text2>#{params[:message]}</wp:Text2>"
+        msg_body << "<wp:Param>#{params[:param]}</wp:Param>" if params[:param]
       when :tile
-        msg_body << "<wp:BackgroundImage>#{params[:image]}</wp:BackgroundImage>" +
-          "<wp:Count>#{params[:count].to_s}</wp:Count>" +
-          "<wp:Title>#{params[:title]}</wp:Title>" +
-          "<wp:BackBackgroundImage>#{params[:back_image]}</wp:BackBackgroundImage>" +
-          "<wp:BackTitle>#{params[:back_title]}</wp:BackTitle>" +
-          "<wp:BackContent>#{params[:back_content]}</wp:BackContent>"
+        msg_body << "<wp:BackgroundImage>#{params[:image]}</wp:BackgroundImage>" if params[:image]
+        msg_body << "<wp:Count>#{params[:count].to_s}</wp:Count>" if params[:count]
+        msg_body << "<wp:Title>#{params[:title]}</wp:Title>" if params[:title]
+        msg_body << "<wp:BackBackgroundImage>#{params[:back_image]}</wp:BackBackgroundImage>" if params[:back_image]
+        msg_body << "<wp:BackTitle>#{params[:back_title]}</wp:BackTitle>" if params[:back_title]
+        msg_body << "<wp:BackContent>#{params[:back_content]}</wp:BackContent>" if params[:back_content]
       end
       msg_body << "</wp:#{wp_type}></wp:Notification>"
     else
